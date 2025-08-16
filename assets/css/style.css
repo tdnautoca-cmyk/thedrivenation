@@ -1,1 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #003366;
+  margin: 0;
+  padding: 0;
+}
 
+header {
+  background-color: #003366;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 10px;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+main {
+  padding: 2rem;
+}
+
+.car-card {
+  border: 1px solid #003366;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+}
