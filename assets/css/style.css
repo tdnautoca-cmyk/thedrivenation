@@ -30,10 +30,24 @@ main {
 }
 
 .car-card {
-  border: 1px solid #003366;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 15px auto;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  background: #fff;
+}
+
+.car-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.car-card img {
+  max-width: 100%;
+  border-radius: 6px;
 }
 
 footer {
