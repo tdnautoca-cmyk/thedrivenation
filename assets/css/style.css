@@ -50,6 +50,18 @@ main {
   border-radius: 6px;
 }
 
+.gallery img {
+  max-width: 250px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
 footer {
   background-color: #003366;
   color: white;
