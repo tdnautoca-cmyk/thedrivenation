@@ -24,8 +24,8 @@ fetch(csvUrl)
 
     const title = `${car["Year"]} ${car["Make"]} ${car["Model"]} ${car["Trim"]}`;
     const heroImage = `assets/images/${stockNumber.toLowerCase()}_1.jpg`;
-
     const imageCount = parseInt(car["Image Count"]) || 0;
+
     let galleryHTML = "";
     for (let i = 1; i <= imageCount; i++) {
       const imgSrc = `assets/images/${stockNumber.toLowerCase()}_${i}.jpg`;
@@ -35,7 +35,10 @@ fetch(csvUrl)
     const soldBanner = car["Listing Status"]?.toLowerCase() === "sold"
       ? `<div class="sold-banner">SOLD</div>` : "";
 
+    document.title = title; // Set browser title
+
     container.innerHTML = `
+      <h1>${title}</h1>
       ${soldBanner}
       <img src="${heroImage}" alt="${title}" class="hero-img">
 
