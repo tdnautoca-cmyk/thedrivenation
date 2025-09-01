@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vehicle Details - Drive Nation</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="assets/images/logo.jpeg" alt="Drive Nation Logo" class="logo" />
+    </a>
+    <h1>Drive Nation</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="inventory.html">Inventory</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Loading and error messages -->
+    <div id="loading-message" style="display: block; text-align: center; padding: 2rem;">
+      <p>Loading vehicle details...</p>
+    </div>
+    <div id="error-message" style="display: none; text-align: center; padding: 2rem; color: red;"></div>
+    
+    <!-- Vehicle content - will be populated by JavaScript -->
+    <div id="vehicle-content" style="display: none;">
+      <!-- Hero image -->
+      <img id="hero-image" src="" alt="" class="hero-img" />
+
+      <!-- Specs -->
+      <section class="car-specs">
+        <h2 id="vehicle-price"></h2>
+        <p><strong>Year:</strong> <span id="vehicle-year"></span></p>
+        <p><strong>Make & Model:</strong> <span id="vehicle-make-model"></span></p>
+        <p><strong>Mileage:</strong> <span id="vehicle-mileage"></span></p>
+        <p><strong>Drivetrain:</strong> <span id="vehicle-drivetrain"></span></p>
+        <p><strong>Transmission:</strong> <span id="vehicle-transmission"></span></p>
+        <p><strong>Fuel Type:</strong> <span id="vehicle-fuel"></span></p>
+        <p><strong>VIN:</strong> <span id="vehicle-vin"></span></p>
+        <p><strong>Stock No:</strong> <span id="vehicle-stock"></span></p>
+      </section>
+
+      <!-- Description -->
+      <section class="car-description">
+        <h3>Vehicle Overview</h3>
+        <p id="vehicle-description"></p>
+      </section>
+
+      <!-- Gallery -->
+      <section class="gallery">
+        <h3>Photo Gallery</h3>
+        <div id="image-gallery"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>Contact us at 250-329-6907 or tdnautoca@gmail.com</p>
+  </footer>
+  
+  <!-- JavaScript files -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/csv-parser.js"></script>
+  <script src="assets/js/inventory-loader-v2.js"></script>
+  <script src="assets/js/vehicle-detail.js"></script>
+</body>
+</html>
