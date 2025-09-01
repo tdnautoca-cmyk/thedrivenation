@@ -98,6 +98,22 @@ main {
 }
 
 /* Detail page: top image */
+.hero-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #003366;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-image {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  border-radius: 8px;
+}
+
 .hero-img {
   width: 100%;
   max-height: 450px;
@@ -117,6 +133,26 @@ main {
 
 .gallery img:hover {
   transform: scale(1.03);
+}
+
+
+#gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#gallery-container img {
+  max-width: 200px;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+#gallery-container img:hover {
+  transform: scale(1.05);
 }
 
 /* SOLD banner on detail page */
