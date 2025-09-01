@@ -43,7 +43,7 @@ fetch(csvUrl)
 
       <section class="car-description">
         <h3>Vehicle Overview</h3>
-        <p>${car["Description"]}</p>
+        <p>${car["Vehicle Overview"] || "No description available."}</p>
       </section>
 
       <section class="gallery">
