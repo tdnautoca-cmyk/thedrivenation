@@ -5,11 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Car Listing</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .hero-img {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+    }
+
+    .gallery img {
+      max-width: 250px;
+      margin: 5px;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .sold-banner {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    main {
+      padding: 2rem;
+      position: relative;
+    }
+  </style>
 </head>
 <body>
   <header>
     <img src="assets/images/logo.jpeg" alt="Drive Nation Logo" class="logo" />
-    <h1 id="car-title">Car Details</h1>
+    <h1>Car Listing</h1>
     <nav>
       <a href="index.html">Home</a> |
       <a href="inventory.html">Inventory</a> |
@@ -17,7 +53,7 @@
     </nav>
   </header>
 
-  <main id="listing-container">
+  <main id="listing">
     <p>Loading listing...</p>
   </main>
 
