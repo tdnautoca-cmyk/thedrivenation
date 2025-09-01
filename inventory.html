@@ -2,9 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inventory - Drive Nation</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .car-card {
+      position: relative;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      width: 250px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .car-card img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .sold-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: red;
+      color: white;
+      padding: 4px 8px;
+      font-weight: bold;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,31 +45,63 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <a href="dnc-2025-006.html">
-      <div class="car-card">
-        <img src="assets/images/dnc-2025-006_1.jpg" alt="2013 Volvo S60">
-        <h3>2013 Volvo S60 T5</h3>
-        <p>177,000 km — $10,500</p>
-      </div>
-    </a>
-    <a href="dnc-2025-007.html">
-      <div class="car-card">
-        <img src="assets/images/dnc-2025-007_1.jpg" alt="2013 Kia Soul">
-        <h3>2013 Kia Soul</h3>
-        <p>222,124 km — $4,200</p>
-      </div>
-    </a>
-    <a href="dnc-2025-008.html">
-      <div class="car-card">
-        <img src="assets/images/dnc-2025-008_5.jpg" alt="2012 Volkswagen Tiguan">
-        <h3>2012 Volkswagen Tiguan</h3>
-        <p>159500 km — $8,700</p>
-      </div>
-    </a>
+
+  <main id="inventory">
+    <p>Loading inventory...</p>
   </main>
+
   <footer>
     <p>© 2025 Drive Nation Inc.</p>
   </footer>
+
+  <script>
+    const inventoryContainer = document.getElementById('inventory');
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMq8tpDxojExGJllyMGhtNga_mX6k-ZoiClIRk2Mj8nsjBv0cV-ZS4QVHy39yG4_DvQgvgAYZcpp0s/pub?output=csv";
+
+    fetch(csvUrl)
+      .then(response => response.text())
+      .then(data => {
+        const rows = data.trim().split("\n").map(row => row.split(","));
+        const headers = rows[0];
+        const listings = rows.slice(1).map(row => {
+          const obj = {};
+          headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
+          return obj;
+        });
+
+        const availableListings = listings.filter(car => car["Listing Status"]?.toLowerCase() !== "archived");
+
+        inventoryContainer.innerHTML = "";
+
+        availableListings.forEach(car => {
+          const stock = car["Stock Number"];
+          const title = `${car["Year"]} ${car["Make"]} ${car[" Model"]} ${car["Trim"]}`;
+          const image = `assets/images/${stock.toLowerCase()}_1.jpg`;
+          const mileage = car["Mileage (in KM)"];
+          const price = car["Price"];
+          const status = car["Listing Status"];
+
+          const card = document.createElement("a");
+          card.href = `listing.html?stock=${stock}`;
+          card.innerHTML = `
+            <div class="car-card">
+              <img src="${image}" alt="${title}">
+              ${status.toLowerCase() === "sold" ? '<div class="sold-badge">SOLD</div>' : ''}
+              <h3>${title}</h3>
+              <p>${mileage} km — $${price}</p>
+            </div>
+          `;
+          inventoryContainer.appendChild(card);
+        });
+
+        if (availableListings.length === 0) {
+          inventoryContainer.innerHTML = "<p>No cars in inventory.</p>";
+        }
+      })
+      .catch(error => {
+        inventoryContainer.innerHTML = "<p>Error loading inventory.</p>";
+        console.error("Error fetching inventory:", error);
+      });
+  </script>
 </body>
 </html>
