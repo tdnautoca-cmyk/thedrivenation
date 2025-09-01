@@ -1,69 +1,71 @@
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMq8tpDxojExGJllyMGhtNga_mX6k-ZoiClIRk2Mj8nsjBv0cV-ZS4QVHy39yG4_DvQgvgAYZcpp0s/pub?output=csv";
-
 const urlParams = new URLSearchParams(window.location.search);
 const stockNumber = urlParams.get("stock");
 
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMq8tpDxojExGJllyMGhtNga_mX6k-ZoiClIRk2Mj8nsjBv0cV-ZS4QVHy39yG4_DvQgvgAYZcpp0s/pub?output=csv";
+
 fetch(csvUrl)
-  .then(response => response.text())
-  .then(data => {
-    const rows = data.trim().split("\n").map(row => row.split(","));
+  .then((response) => response.text())
+  .then((data) => {
+    const rows = data.trim().split("\n").map((row) => row.split(","));
     const headers = rows[0].map(h => h.trim());
-    const listings = rows.slice(1).map(row => {
+    const listings = rows.slice(1).map((row) => {
       const obj = {};
-      headers.forEach((h, i) => obj[h] = row[i]?.trim() || "");
+      headers.forEach((h, i) => {
+        obj[h] = row[i] ? row[i].trim() : "";
+      });
       return obj;
     });
 
-    const car = listings.find(car => car["Stock Number"] === stockNumber);
-    const container = document.getElementById("listing");
+    const car = listings.find((item) => item["Stock Number"] === stockNumber);
 
     if (!car) {
-      container.innerHTML = "<p>Car not found.</p>";
+      document.getElementById("listing").innerHTML = "<p>Vehicle not found.</p>";
       return;
     }
 
     const title = `${car["Year"]} ${car["Make"]} ${car["Model"]} ${car["Trim"]}`;
-    const heroImage = `assets/images/${stockNumber.toLowerCase()}_1.jpg`;
-    const imageCount = parseInt(car["Image Count"]) || 0;
+    const imageBase = `assets/images/${stockNumber.toLowerCase()}`;
+    const mainImage = `${imageBase}_1.jpg`;
 
-    let galleryHTML = "";
-    for (let i = 1; i <= imageCount; i++) {
-      const imgSrc = `assets/images/${stockNumber.toLowerCase()}_${i}.jpg`;
-      galleryHTML += `<img src="${imgSrc}" alt="${title} - ${i}">`;
-    }
-
-    const soldBanner = car["Listing Status"]?.toLowerCase() === "sold"
-      ? `<div class="sold-banner">SOLD</div>` : "";
-
-    document.title = title; // Set browser title
-
-    container.innerHTML = `
-      <h1>${title}</h1>
-      ${soldBanner}
-      <img src="${heroImage}" alt="${title}" class="hero-img">
-
+    // Insert main content
+    document.getElementById("listing").innerHTML = `
+      <h2 class="hero-title">${title}</h2>
+      <img src="${mainImage}" alt="${title}" class="main-image" />
       <section class="car-specs">
-        <h2>$${car["Price"]}</h2>
+        <p><strong>$${car["Price"]}</strong></p>
         <p><strong>Mileage:</strong> ${car["Mileage (in KM)"]} km</p>
-        <p><strong>Drivetrain:</strong> ${car["Drivetrain"] || car["Drivetrain "]}</p>
+        <p><strong>Drivetrain:</strong> ${car["Drivetrain"]}</p>
         <p><strong>Transmission:</strong> ${car["Transmission"]}</p>
-        <p><strong>Fuel Type:</strong> ${car["Fuel Type"] || car["Fuel Type "]}</p>
+        <p><strong>Fuel Type:</strong> ${car["Fuel Type"]}</p>
         <p><strong>VIN:</strong> ${car["VIN"]}</p>
         <p><strong>Stock No:</strong> ${car["Stock Number"]}</p>
       </section>
 
       <section class="car-description">
         <h3>Vehicle Overview</h3>
-        <p>${car["Vehicle Overview"]}</p>
+        <p>${car["Description"]}</p>
       </section>
 
       <section class="gallery">
         <h3>Photo Gallery</h3>
-        ${galleryHTML}
+        <div id="gallery-container"></div>
       </section>
     `;
+
+    // Dynamically load gallery images
+    const galleryDiv = document.getElementById("gallery-container");
+
+    for (let i = 2; i <= 20; i++) {
+      const img = new Image();
+      const path = `${imageBase}_${i}.jpg`;
+
+      img.src = path;
+      img.alt = `${title} photo ${i}`;
+      img.onload = () => galleryDiv.appendChild(img);
+      img.onerror = () => {}; // skip if image not found
+    }
   })
-  .catch(error => {
-    document.getElementById("listing").innerHTML = "<p>Error loading listing.</p>";
-    console.error("Error fetching listing:", error);
+  .catch((error) => {
+    document.getElementById("listing").innerHTML = "<p>Error loading vehicle details.</p>";
+    console.error("Error:", error);
   });
