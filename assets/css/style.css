@@ -59,12 +59,12 @@ main {
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-  .car-card img {
-    width: 100%;
-    max-height: 160px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
+.car-card img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+}
 
 .car-card h3 {
   font-size: 1rem;
@@ -82,7 +82,7 @@ main {
   color: #555;
 }
 
-/* SOLD badge styling */
+/* SOLD badge on cards */
 .sold-badge {
   position: absolute;
   top: 10px;
@@ -97,7 +97,16 @@ main {
   white-space: nowrap;
 }
 
-/* Gallery styling for detail pages */
+/* Detail page: top image */
+.hero-img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Detail page: gallery */
 .gallery img {
   max-width: 250px;
   margin: 5px;
@@ -108,6 +117,18 @@ main {
 
 .gallery img:hover {
   transform: scale(1.03);
+}
+
+/* SOLD banner on detail page */
+.sold-banner {
+  background: red;
+  color: white;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 1em;
 }
 
 /* Footer */
