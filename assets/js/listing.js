@@ -3,19 +3,12 @@ const stockNumber = urlParams.get("stock");
 
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMq8tpDxojExGJllyMGhtNga_mX6k-ZoiClIRk2Mj8nsjBv0cV-ZS4QVHy39yG4_DvQgvgAYZcpp0s/pub?output=csv";
 
-fetch(csvUrl)
-  .then((response) => response.text())
-  .then((data) => {
-    const rows = data.trim().split("\n").map((row) => row.split(","));
-    const headers = rows[0].map(h => h.trim());
-    const listings = rows.slice(1).map((row) => {
-      const obj = {};
-      headers.forEach((h, i) => {
-        obj[h] = row[i] ? row[i].trim() : "";
-      });
-      return obj;
-    });
-
+// Load and parse CSV using PapaParse
+Papa.parse(csvUrl, {
+  download: true,
+  header: true,
+  complete: function(results) {
+    const listings = results.data;
     const car = listings.find((item) => item["Stock Number"] === stockNumber);
 
     if (!car) {
@@ -27,10 +20,11 @@ fetch(csvUrl)
     const imageBase = `assets/images/${stockNumber.toLowerCase()}`;
     const mainImage = `${imageBase}_1.jpg`;
 
-    // Insert main content
+    // Render main car data
     document.getElementById("listing").innerHTML = `
       <h2 class="hero-title">${title}</h2>
       <img src="${mainImage}" alt="${title}" class="main-image" />
+      
       <section class="car-specs">
         <p><strong>$${car["Price"]}</strong></p>
         <p><strong>Mileage:</strong> ${car["Mileage (in KM)"]} km</p>
@@ -43,12 +37,12 @@ fetch(csvUrl)
 
       <section class="car-description">
         <h3>Vehicle Overview</h3>
-        <p>${car["Vehicle Overview"] || "No description available."}</p>
+        <p>${car["Description"]}</p>
       </section>
 
       <section class="gallery">
         <h3>Photo Gallery</h3>
-        <div id="gallery-container"></div>
+        <div id="gallery-container" class="gallery-grid"></div>
       </section>
     `;
 
@@ -56,16 +50,20 @@ fetch(csvUrl)
     const galleryDiv = document.getElementById("gallery-container");
 
     for (let i = 2; i <= 20; i++) {
-      const img = new Image();
       const path = `${imageBase}_${i}.jpg`;
+      const img = new Image();
 
       img.src = path;
       img.alt = `${title} photo ${i}`;
+      img.className = "gallery-image";
+      img.onclick = () => window.open(path, "_blank");
+      
+      img.onerror = () => {}; // Skip missing images
       img.onload = () => galleryDiv.appendChild(img);
-      img.onerror = () => {}; // skip if image not found
     }
-  })
-  .catch((error) => {
+  },
+  error: function(err) {
     document.getElementById("listing").innerHTML = "<p>Error loading vehicle details.</p>";
-    console.error("Error:", error);
-  });
+    console.error("Error parsing CSV:", err);
+  }
+});
