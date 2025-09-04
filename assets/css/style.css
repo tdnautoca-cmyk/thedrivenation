@@ -330,7 +330,7 @@ footer {
 
 /* Hero Banner with Background Image */
 .hero-banner {
-  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpeg');
+  background-image: url('assets/images/erik-mclean-3WAMh1omVAY-unsplash.jpeg');
   background-size: cover;
   background-position: center;
   padding: 120px 20px;
