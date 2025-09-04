@@ -5,28 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drive Nation Inc.</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .hero-banner {
+      background: url('assets/images/banner.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+    }
+
+    .hero-overlay {
+      background: rgba(0,0,0,0.5);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .hero-overlay h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #ffffff;
+      color: #003366;
+      padding: 0.7rem 1.5rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .about-section,
+    .features,
+    .contact-banner {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .features ul.feature-grid {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-grid li {
+      background: #f3f3f3;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    .contact-banner {
+      text-align: center;
+      background: #003366;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <img src="assets/images/logo.jpeg" alt="Drive Nation Logo" class="logo" />
-    <h1>Welcome to Drive Nation Inc.</h1>
-    <p>Your trusted used car dealership in Surrey, BC</p>
     <nav>
       <a href="index.html">Home</a> |
       <a href="inventory.html">Inventory</a> |
       <a href="contact.html">Contact</a>
     </nav>
   </header>
+
+  <section class="hero-banner">
+    <div class="hero-overlay">
+      <h1>Welcome to Drive Nation Inc.</h1>
+      <p>Your trusted used car dealership in Surrey, BC</p>
+      <a href="inventory.html" class="cta-button">Browse Inventory</a>
+    </div>
+  </section>
+
   <main>
-    <section class="highlight">
-      <h2>Featured Inventory</h2>
-      <div class="car-card">
-        <h3>2013 Volvo S60</h3>
-        <p>Mileage: 177,000 km</p>
-        <p>Price: $10,500</p>
-      </div>
+    <section class="about-section">
+      <h2>About Us</h2>
+      <p>Drive Nation Inc. is a locally owned used car dealership in Surrey, BC. We specialize in affordable, well-maintained vehicles and pride ourselves on honest service, vehicle transparency, and hassle-free buying.</p>
+    </section>
+
+    <section class="features">
+      <h2>Why Choose Us?</h2>
+      <ul class="feature-grid">
+        <li><strong>✔️ Certified Vehicles</strong><br> Thorough inspections and reliability checks</li>
+        <li><strong>📄 Free CarFax</strong><br> Every car includes a full history report</li>
+        <li><strong>💳 Easy Financing</strong><br> Approval options for all credit situations</li>
+        <li><strong>📍 Local Dealership</strong><br> Serving Surrey and the Lower Mainland</li>
+      </ul>
+    </section>
+
+    <section class="contact-banner">
+      <h2>Got Questions? Let's Talk!</h2>
+      <a href="contact.html" class="cta-button">Contact Us</a>
     </section>
   </main>
+
   <footer>
     <p>© 2025 Drive Nation Inc.</p>
   </footer>
