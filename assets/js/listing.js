@@ -65,8 +65,7 @@ Papa.parse(csvUrl, {
 
       img.onerror = () => {}; // Skip missing images
       img.onload = () => {
-        link.appendChild(img);
-        galleryDiv.appendChild(link);
+        galleryDiv.appendChild(anchor);
       };
     }
   },
