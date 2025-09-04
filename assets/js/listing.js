@@ -35,9 +35,9 @@ Papa.parse(csvUrl, {
         <p><strong>Stock No:</strong> ${car["Stock Number"]}</p>
       </section>
 
-      <section class="car-description">
+      <section class="Vehicle Overview">
         <h3>Vehicle Overview</h3>
-        <p>${car["Description"]}</p>
+        <p>${car["Vehicle Overview"]}</p>
       </section>
 
       <section class="gallery">
