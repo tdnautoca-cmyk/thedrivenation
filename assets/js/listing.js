@@ -23,7 +23,7 @@ Papa.parse(csvUrl, {
     document.getElementById("listing").innerHTML = `
       <h2 class="hero-title">${title}</h2>
       <img src="${mainImage}" alt="${title}" class="main-image" />
-      
+
       <section class="car-specs">
         <p><strong>$${car["Price"]}</strong></p>
         <p><strong>Mileage:</strong> ${car["Mileage (in KM)"]} km</p>
@@ -59,13 +59,13 @@ Papa.parse(csvUrl, {
 
       const anchor = document.createElement("a");
       anchor.href = path;
-      anchor.setAttribute("data-lightbox", stockNumber);  // Group by stock
-      anchor.setAttribute("data-title", `${title} photo ${i}`);  // Better UX
+      anchor.setAttribute("data-lightbox", stockNumber); // Groups all images together
+      anchor.setAttribute("data-title", `${title} photo ${i}`);
       anchor.appendChild(img);
 
       img.onerror = () => {}; // Skip missing images
       img.onload = () => {
-        galleryDiv.appendChild(anchor);
+        galleryDiv.appendChild(anchor); // ✅ Use 'anchor', not 'link'
       };
     }
   },
