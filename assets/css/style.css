@@ -380,3 +380,36 @@ footer {
   background-color: #003366;
   color: white;
 }
+.contact-info {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.3rem 0;
+}
+
+.map-link {
+  margin-top: 1rem;
+}
+
+.map-link a {
+  font-size: 1rem;
+  color: #003366;
+  text-decoration: underline;
+}
+
+.map-embed {
+  max-width: 1000px;
+  margin: 2rem auto;
+}
