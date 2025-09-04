@@ -3,7 +3,6 @@ const stockNumber = urlParams.get("stock");
 
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMq8tpDxojExGJllyMGhtNga_mX6k-ZoiClIRk2Mj8nsjBv0cV-ZS4QVHy39yG4_DvQgvgAYZcpp0s/pub?output=csv";
 
-// Load and parse CSV using PapaParse
 Papa.parse(csvUrl, {
   download: true,
   header: true,
@@ -35,7 +34,7 @@ Papa.parse(csvUrl, {
         <p><strong>Stock No:</strong> ${car["Stock Number"]}</p>
       </section>
 
-      <section class="Vehicle Overview">
+      <section class="car-description">
         <h3>Vehicle Overview</h3>
         <p>${car["Vehicle Overview"]}</p>
       </section>
@@ -46,20 +45,27 @@ Papa.parse(csvUrl, {
       </section>
     `;
 
-    // Dynamically load gallery images
+    // Dynamically load gallery images with Lightbox support
     const galleryDiv = document.getElementById("gallery-container");
 
     for (let i = 2; i <= 20; i++) {
       const path = `${imageBase}_${i}.jpg`;
       const img = new Image();
+      const link = document.createElement("a");
+
+      link.href = path;
+      link.setAttribute("data-lightbox", "car-gallery");
+      link.setAttribute("data-title", `${title} photo ${i}`);
 
       img.src = path;
       img.alt = `${title} photo ${i}`;
       img.className = "gallery-image";
-      img.onclick = () => window.open(path, "_blank");
-      
+
       img.onerror = () => {}; // Skip missing images
-      img.onload = () => galleryDiv.appendChild(img);
+      img.onload = () => {
+        link.appendChild(img);
+        galleryDiv.appendChild(link);
+      };
     }
   },
   error: function(err) {
