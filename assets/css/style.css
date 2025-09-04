@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   background: #ffffff;
@@ -97,7 +98,7 @@ main {
   white-space: nowrap;
 }
 
-/* Main Listing Hero Title */
+/* Listing Page - Title */
 .hero-title {
   font-size: 2rem;
   font-weight: bold;
@@ -106,16 +107,26 @@ main {
   margin-bottom: 20px;
 }
 
-/* Large Hero Image in Listing */
+/* Listing Page - Hero Image */
 .main-image {
   display: block;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto 30px;
   border-radius: 8px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.main-image:hover {
+  transform: scale(1.02);
 }
 
 /* Car Specs Section */
+.car-specs {
+  margin-top: 1.5rem;
+}
+
 .car-specs p {
   font-size: 1rem;
   margin: 5px 0;
@@ -158,6 +169,9 @@ main {
   gap: 10px;
   justify-content: center;
   margin-top: 1rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .gallery-image {
@@ -180,4 +194,12 @@ footer {
   text-align: center;
   padding: 1rem;
   position: relative;
+}
+
+/* Optional: Lightbox customizations */
+.lb-data .lb-close {
+  color: white !important;
+  background-color: red;
+  border-radius: 3px;
+  padding: 5px;
 }
