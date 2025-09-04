@@ -152,21 +152,24 @@ main {
   color: #003366;
 }
 
-#gallery-container {
+.gallery-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-#gallery-container img {
-  max-width: 200px;
+.gallery-image {
+  max-width: 220px;
+  height: auto;
   border-radius: 6px;
+  object-fit: cover;
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
-#gallery-container img:hover {
+.gallery-image:hover {
   transform: scale(1.05);
 }
 
