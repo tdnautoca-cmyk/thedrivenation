@@ -48,18 +48,20 @@ Papa.parse(csvUrl, {
     // Dynamically load gallery images with Lightbox support
     const galleryDiv = document.getElementById("gallery-container");
 
-    for (let i = 2; i <= 20; i++) {
+    for (let i = 1; i <= 20; i++) {
       const path = `${imageBase}_${i}.jpg`;
       const img = new Image();
-      const link = document.createElement("a");
-
-      link.href = path;
-      link.setAttribute("data-lightbox", "car-gallery");
-      link.setAttribute("data-title", `${title} photo ${i}`);
 
       img.src = path;
       img.alt = `${title} photo ${i}`;
       img.className = "gallery-image";
+      img.loading = "lazy";
+
+      const anchor = document.createElement("a");
+      anchor.href = path;
+      anchor.setAttribute("data-lightbox", stockNumber);  // Group by stock
+      anchor.setAttribute("data-title", `${title} photo ${i}`);  // Better UX
+      anchor.appendChild(img);
 
       img.onerror = () => {}; // Skip missing images
       img.onload = () => {
