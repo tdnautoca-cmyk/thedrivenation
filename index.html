@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
     .hero-banner {
-      background: url('assets/images/banner.jpg') center/cover no-repeat;
+      background: url('assets/images/index_background.jpg') center/cover no-repeat;
       height: 60vh;
       display: flex;
       align-items: center;
@@ -16,14 +16,22 @@
       color: white;
     }
 
-    .hero-overlay {
-      background: rgba(0,0,0,0.5);
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
 
-    .hero-overlay h1 {
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-content h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
@@ -37,6 +45,11 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
+    }
+
+    .cta-button:hover {
+      background-color: #003366;
+      color: white;
     }
 
     .about-section,
@@ -97,20 +110,4 @@
       <h2>Why Choose Us?</h2>
       <ul class="feature-grid">
         <li><strong>✔️ Certified Vehicles</strong><br> Thorough inspections and reliability checks</li>
-        <li><strong>📄 Free CarFax</strong><br> Every car includes a full history report</li>
-        <li><strong>💳 Easy Financing</strong><br> Approval options for all credit situations</li>
-        <li><strong>📍 Local Dealership</strong><br> Serving Surrey and the Lower Mainland</li>
-      </ul>
-    </section>
-
-    <section class="contact-banner">
-      <h2>Got Questions? Let's Talk!</h2>
-      <a href="contact.html" class="cta-button">Contact Us</a>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Drive Nation Inc.</p>
-  </footer>
-</body>
-</html>
+        <li><strong>
