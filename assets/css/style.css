@@ -206,7 +206,7 @@ footer {
 
 /* Hero Section */
 .hero {
-  background-image: url('assets/images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
+  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -214,6 +214,7 @@ footer {
   color: white;
   padding: 5rem 2rem;
   text-align: center;
+  min-height: 300px;
 }
 
 .hero::before {
@@ -350,7 +351,7 @@ footer {
 
 /* Hero Banner with Background Image */
 .hero-banner {
-  background-image: url('assets/images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
+  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
   background-size: cover;
   background-position: center;
   padding: 120px 20px;
