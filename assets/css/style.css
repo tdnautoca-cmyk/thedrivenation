@@ -206,7 +206,7 @@ footer {
 
 /* Hero Section */
 .hero {
-  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpeg');
+  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -350,7 +350,7 @@ footer {
 
 /* Hero Banner with Background Image */
 .hero-banner {
-  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpeg');
+  background-image: url('../images/erik-mclean-3WAMh1omVAY-unsplash.jpg');
   background-size: cover;
   background-position: center;
   padding: 120px 20px;
