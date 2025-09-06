@@ -434,3 +434,7 @@ footer {
   max-width: 1000px;
   margin: 2rem auto;
 }
+footer a {
+  color: white;
+  text-decoration: underline;
+}
